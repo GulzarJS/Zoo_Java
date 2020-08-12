@@ -1,7 +1,7 @@
 import java.util.Hashtable;
 import java.util.Map;
 
-public class Foodstore {
+public class FoodStore {
 
     static Hashtable<Food, Integer> foodStore = new Hashtable<Food, Integer>();
 
