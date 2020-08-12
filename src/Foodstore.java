@@ -5,25 +5,6 @@ public class Foodstore {
 
     static Hashtable<Food, Integer> foodStore = new Hashtable<Food, Integer>();
 
-    public static void main(String[] args) {
-        Food hay= new Food("hay", 1, 4);
-        Food steak= new Food("steak", 3, 4);
-        foodStore.put(hay, 5);
-        foodStore.put(steak, 8);
-
-        printFoodStore(foodStore);
-
-
-
-//        TakeFood(hay);
-
-//
-//        foodStore.replace("steak", foodStore.get("steak") - 1);
-//
-//        System.out.println(foodStore);
-
-    }
-
     public static void addFood( Food food, int quantity){
         foodStore.put(food, quantity);
     }
