@@ -3,27 +3,31 @@ import java.util.Map;
 
 public class FoodStore {
 
-    static Hashtable<Food, Integer> foodStore = new Hashtable<Food, Integer>();
+    private Hashtable<Food, Integer> foodStore;
 
-    public static void addFood( Food food, int quantity){
-        foodStore.put(food, quantity);
+
+    public FoodStore(Hashtable<Food, Integer> foodStore) {
+        this.foodStore = foodStore;
     }
 
-    public static void TakeFood( Food food){
+    public  void addFood(Food food, int quantity){
+        this.foodStore.put(food, quantity);
+    }
+
+    public  void TakeFood( Food food){
         if(isAvailable(food.getName())) {
-            foodStore.replace(food, foodStore.get(food) - 1);
+            this.foodStore.replace(food, this.foodStore.get(food) - 1);
         }else{
             System.err.println("There is no " + food + " in the foodstore");
         }
     }
 
-    public static boolean isAvailable(String foodName){
-        if(foodStore.get(foodName) > 0) return true;
-        return false;
+    public  boolean isAvailable(String foodName){
+        return this.foodStore.get(foodName) > 0;
     }
 
-    public static void printFoodStore(Hashtable<Food, Integer> foodStore){
-        for (Map.Entry<Food, Integer> entry: foodStore.entrySet()) {
+    public  void printFoodStore(){
+        for (Map.Entry<Food, Integer> entry: this.foodStore.entrySet()) {
             System.out.println(" " + entry.getKey().getName() + " = " + entry.getValue());
         }
     }

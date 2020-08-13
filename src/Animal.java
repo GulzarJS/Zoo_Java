@@ -3,6 +3,8 @@ import java.util.Arrays;
 
 public abstract class Animal {
 
+    private String name;
+
     // age in month
     private int age;
 
@@ -18,12 +20,19 @@ public abstract class Animal {
     // average age that the Animal lives to in months.
     private int lifeExpectancy;
 
-    public Animal(int age, char gender, String[] eats, int health, int lifeExpectancy) {
+    private Enclosure enclosure;
+
+    public Animal(String name, int age, char gender, String[] eats, int health, int lifeExpectancy) {
+        this.name = name;
         this.age = age;
         this.gender = gender;
         this.eats = eats;
         this.health = health;
         this.lifeExpectancy = lifeExpectancy;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getAge() {
@@ -69,6 +78,14 @@ public abstract class Animal {
     public boolean canEat(String food) {
         if (Arrays.asList(eats).contains(food)) return true;
         return false;
+    }
+
+    public Enclosure getEnclosure() {
+        return enclosure;
+    }
+
+    public void setEnclosure(Enclosure enclosure) {
+        this.enclosure = enclosure;
     }
 
     public abstract void eat();
