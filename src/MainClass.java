@@ -1,3 +1,6 @@
+import food.Food;
+import food.FoodStore;
+
 import java.util.Hashtable;
 
 public class MainClass {

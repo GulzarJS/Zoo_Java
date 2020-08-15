@@ -1,4 +1,10 @@
+package enclosure;
+
+import animals.Animal;
+import food.FoodStore;
+
 import java.util.ArrayList;
+
 
 public class Enclosure {
 
@@ -64,6 +70,9 @@ public class Enclosure {
     }
 
     public void aMonthPasses(){
+        for ( Animal animal : this.enclosure){
+            animal.aMonthPasses();
+        }
         this.nbMonth++;
     }
 

@@ -1,4 +1,7 @@
-import java.lang.reflect.Array;
+package animals;
+
+import enclosure.Enclosure;
+
 import java.util.Arrays;
 
 public abstract class Animal {
@@ -11,13 +14,13 @@ public abstract class Animal {
     // gender : 'm' or 'f'
     private char gender;
 
-    // types of food that the Animal will eat
+    // types of food that the animals.Animal will eat
     private String[] eats;
 
     // how healthy the animal is. Min 0 Max 10. Reduce 2 for each month. Increase for each food.
     private int health;
 
-    // average age that the Animal lives to in months.
+    // average age that the animals.Animal lives to in months.
     private int lifeExpectancy;
 
     private Enclosure enclosure;
@@ -76,8 +79,21 @@ public abstract class Animal {
     }
 
     public boolean canEat(String food) {
-        if (Arrays.asList(eats).contains(food)) return true;
-        return false;
+       return this.enclosure.getFoodStore().isAvailable(food);
+    }
+
+    public void decreaseHealth(){
+        this.health = this.health - 2;
+    }
+
+    public  void eat(){
+        for (String food : this.eats) {
+            if(canEat(food)){
+                this.health = this.health + this.enclosure.getFoodStore().getFood(food).getHealth();
+                this.enclosure.getFoodStore().TakeFood(this.enclosure.getFoodStore().getFood(food));
+                this.enclosure.addWaste(this.enclosure.getFoodStore().getFood(food).getWaste());
+            }
+        }
     }
 
     public Enclosure getEnclosure() {
@@ -88,9 +104,13 @@ public abstract class Animal {
         this.enclosure = enclosure;
     }
 
-    public abstract void eat();
-    public abstract void decreaseHealth();
+
+    public void aMonthPasses(){
+        this.decreaseHealth();
+        this.eat();
+        this.setAge(this.getAge() + 1);
+    }
+
     public abstract void treat();
-    public abstract boolean aMonthPasses();
 
 }
